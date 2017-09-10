@@ -1,0 +1,25 @@
+﻿@using AdsWithLogin.Data
+@model AdsWithLogin.Web.Models.AdDetailsViewModel
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h1>@Model.Ad.Title</h1>
+        <h3>@Model.Ad.Description</h3>
+        <h4>@Model.Ad.DateListed.ToShortDateString()</h4>
+        <br />
+        <h2>@Model.Ad.User.FirstName @Model.Ad.User.LastName</h2>
+        <h2>@Model.Ad.User.PhoneNumber</h2>
+        <br />
+        <img src="~/Images/@Model.Ad.FileName" style="width: 200px" />
+        <div>
+            <br />
+            @if (Model.Posted)
+            {
+                <form method="post" action="/home/Remove">
+                    <input type="hidden" name="Id" value="@Model.Ad.Id" />
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>

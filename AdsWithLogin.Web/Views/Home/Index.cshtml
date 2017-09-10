@@ -1,0 +1,29 @@
+﻿@using AdsWithLogin.Data
+@model AdsWithLogin.Web.Models.AdsViewModel
+
+@if(Model.User != null)
+{
+    <h1>Welcome @Model.User.FirstName @Model.User.LastName</h1>
+    <a class="btn btn-primary" href="/home/addad">Add Ad</a>
+    <a class="btn btn-warning" href="/home/logout">Log Out</a>
+}
+
+<h1>Please Take:</h1>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Details</th>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Image</th>
+    </tr>
+    @foreach (Ad ad in Model.Ads)
+    {
+        <tr>
+            <td><a class="btn btn-primary" href="/home/Details?Id=@ad.Id">View Details</a></td>
+            <td>@ad.Title</td>
+            <td>@ad.DateListed.ToShortDateString()</td>
+            <td><img src="~/Images/@ad.FileName" style="width: 100px" /></td>
+        </tr>
+    }
+</table>
